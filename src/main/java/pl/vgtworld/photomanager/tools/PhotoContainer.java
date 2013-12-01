@@ -37,14 +37,11 @@ class PhotoContainer {
 	long getLastModified() {
 		if (raw == null && jpg == null) {
 			return 0;
-		}
-		if (raw == null && jpg != null) {
+		} else if (raw == null && jpg != null) {
 			return jpg.lastModified();
-		}
-		if (raw != null && jpg == null) {
+		} else if (raw != null && jpg == null) {
 			return raw.lastModified();
-		}
-		if (raw.lastModified() < jpg.lastModified()) {
+		} else if (raw.lastModified() < jpg.lastModified()) {
 			return raw.lastModified();
 		}
 		return jpg.lastModified();

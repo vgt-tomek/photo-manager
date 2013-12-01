@@ -41,7 +41,7 @@ public class FilelistConverter {
 			return;
 		}
 		
-		if (photos.containsKey(name) == false) {
+		if (!photos.containsKey(name)) {
 			photos.put(name, container);
 		}
 	}
