@@ -26,6 +26,33 @@ public class PhotoContainerTest {
 	}
 	
 	@Test
+	public void shouldReturnZeroAsLastModifiedForEmptyContainer() {
+		PhotoContainer container = new PhotoContainer();
+		
+		assertEquals(0, container.getLastModified());
+	}
+	
+	@Test
+	public void shouldReturnProperJpgFile() {
+		File jpg = new FileStub("some-file.jpg", 12345L);
+		PhotoContainer container = new PhotoContainer();
+		
+		container.setJpg(jpg);
+		
+		assertEquals(jpg, container.getJpg());
+	}
+	
+	@Test
+	public void shouldReturnProperRawFile() {
+		File raw = new FileStub("some-file.cr2", 12345L);
+		PhotoContainer container = new PhotoContainer();
+		
+		container.setRaw(raw);
+		
+		assertEquals(raw, container.getRaw());
+	}
+	
+	@Test
 	public void shouldReturnProperTimestamp() {
 		long timestamp = 574355346L;
 		File jpg = new FileStub("some-file.jpg", timestamp);
@@ -44,8 +71,8 @@ public class PhotoContainerTest {
 		File raw = new FileStub("some-file.raw", 2234567L);
 		PhotoContainer container = new PhotoContainer();
 		
-		container.setJpg(jpg);
 		container.setRaw(raw);
+		container.setJpg(jpg);
 		
 		assertEquals(1234567L, container.getLastModified());
 	}
