@@ -6,26 +6,10 @@ import java.io.File;
 
 import org.junit.Test;
 
+import pl.vgtworld.photomanager.FileStub;
 import pl.vgtworld.photomanager.model.PhotoContainer;
 
 public class PhotoContainerTest {
-	
-	class FileStub extends File {
-
-		private static final long serialVersionUID = 1L;
-		
-		private long lastModified;
-		
-		FileStub(String filename, long lastModified) {
-			super(filename);
-			this.lastModified = lastModified;
-		}
-		
-		@Override
-		public long lastModified() {
-			return lastModified;
-		}
-	}
 	
 	@Test
 	public void shouldReturnZeroAsLastModifiedForEmptyContainer() {
