@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import pl.vgtworld.photomanager.model.PhotoContainer;
+
 public class FilelistCoverterTest {
 	
 	@Test

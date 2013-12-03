@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import pl.vgtworld.photomanager.model.PhotoContainer;
+
 public class FilelistConverter {
 	
 	private static final Logger LOGGER = Logger.getLogger(FilelistConverter.class);

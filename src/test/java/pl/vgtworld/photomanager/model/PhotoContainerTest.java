@@ -1,10 +1,12 @@
-package pl.vgtworld.photomanager.tools;
+package pl.vgtworld.photomanager.model;
 
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 
 import org.junit.Test;
+
+import pl.vgtworld.photomanager.model.PhotoContainer;
 
 public class PhotoContainerTest {
 	

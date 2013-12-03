@@ -1,10 +1,10 @@
-package pl.vgtworld.photomanager.tools;
+package pl.vgtworld.photomanager.model;
 
 import java.io.File;
 
 import org.apache.log4j.Logger;
 
-class PhotoContainer {
+public class PhotoContainer {
 	
 	private static final Logger LOGGER = Logger.getLogger(PhotoContainer.class);
 	
@@ -16,25 +16,25 @@ class PhotoContainer {
 		return jpg;
 	}
 	
-	void setJpg(File jpg) {
+	public void setJpg(File jpg) {
 		this.jpg = jpg;
 		if (raw != null) {
 			verifyTimestampIntegrity();
 		}
 	}
 	
-	File getRaw() {
+	public File getRaw() {
 		return raw;
 	}
 	
-	void setRaw(File raw) {
+	public void setRaw(File raw) {
 		this.raw = raw;
 		if (jpg != null) {
 			verifyTimestampIntegrity();
 		}
 	}
 	
-	long getLastModified() {
+	public long getLastModified() {
 		if (raw == null && jpg == null) {
 			return 0;
 		} else if (raw == null && jpg != null) {
