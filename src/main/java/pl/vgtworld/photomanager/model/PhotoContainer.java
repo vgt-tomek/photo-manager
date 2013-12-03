@@ -8,6 +8,8 @@ public class PhotoContainer {
 	
 	private static final Logger LOGGER = Logger.getLogger(PhotoContainer.class);
 	
+	private static final long TIME_DIFFERENCE_WARNING_THRESHOLD = 5000;
+	
 	private File jpg;
 	
 	private File raw;
@@ -48,7 +50,8 @@ public class PhotoContainer {
 	}
 	
 	private void verifyTimestampIntegrity() {
-		if (jpg.lastModified() != raw.lastModified()) {
+		long timeDifference = Math.abs(jpg.lastModified() - raw.lastModified());
+		if (timeDifference > TIME_DIFFERENCE_WARNING_THRESHOLD) {
 			String messageFormat =
 					"Two files should have the same timestamp but it's different. "
 					+ "Using older timestamp for all calculations. %1$s - %3$d, %2$s - %4$d"
