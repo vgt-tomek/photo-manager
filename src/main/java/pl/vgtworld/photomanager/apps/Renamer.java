@@ -11,6 +11,7 @@ public class Renamer {
 	
 	class PhotoComparator implements Comparator<PhotoContainer> {
 
+		@Override
 		public int compare(PhotoContainer o1, PhotoContainer o2) {
 			return (int)(o1.getLastModified() - o2.getLastModified());
 		}
