@@ -23,9 +23,24 @@ public class PhotoManager {
 			if (cli.getAction() == Cli.Action.RENAME) {
 				renameAction(cli);
 			}
+			
+			if (cli.getAction() == Cli.Action.DELETE) {
+				deleteAction(cli);
+			}
 		} catch (ParseException e) {
 			LOGGER.warn(String.format("Exception caught while parsing arguments (%s).", e.getMessage()));
 		}
+	}
+	
+	private static void deleteAction(Cli cli) {
+		if (!cli.hasOption("p")) {
+			LOGGER.error("Path to target directory is required. Use -h for more information.");
+			return;
+		}
+		
+		String path = cli.getOptionValue("p");
+		Launcher launcher = new Launcher();
+		launcher.delete(path);
 	}
 	
 	private static void renameAction(Cli cli) {

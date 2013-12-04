@@ -1,6 +1,7 @@
 package pl.vgtworld.photomanager.apps;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -17,18 +18,10 @@ public class Launcher {
 	private static final Logger LOGGER = Logger.getLogger(Launcher.class);
 	
 	public void rename(String path, int minimumDigits) {
-		File directory = new File(path);
-		if (!directory.isDirectory()) {
-			LOGGER.fatal("Provided path is not a valid directory.");
+		List<PhotoContainer> photos = loadPhotos(path);
+		if (photos == null) {
 			return;
 		}
-		
-		List<File> files = Arrays.asList(directory.listFiles());
-		LOGGER.info(String.format("Found %d files.", files.size()));
-		
-		FilelistConverter converter = new FilelistConverter();
-		List<PhotoContainer> photos = converter.convertToPhotoContainerList(files);
-		LOGGER.info(String.format("Found %d photos.", photos.size()));
 		
 		DateFilter filter = new DateFilter();
 		Map<String, List<PhotoContainer>> groupedPhotos = filter.groupPhotosByDay(photos);
@@ -42,5 +35,40 @@ public class Launcher {
 			renamer.setMinimumDigits(minimumDigits);
 			renamer.rename(photosFromSingleDay);
 		}
+	}
+
+	public void delete(String path) {
+		List<PhotoContainer> photos = loadPhotos(path);
+		if (photos == null) {
+			return;
+		}
+		
+		List<File> rawToRemove = new ArrayList<File>();
+		for (PhotoContainer photo : photos) {
+			if (photo.getRaw() != null && photo.getJpg() == null) {
+				rawToRemove.add(photo.getRaw());
+			}
+		}
+		
+		LOGGER.info(String.format("Found %d orphaned raw files. Removing.", rawToRemove.size()));
+		for (File file : rawToRemove) {
+			file.delete();
+		}
+	}
+	
+	private List<PhotoContainer> loadPhotos(String path) {
+		File directory = new File(path);
+		if (!directory.isDirectory()) {
+			LOGGER.fatal("Provided path is not a valid directory.");
+			return null;
+		}
+		
+		List<File> files = Arrays.asList(directory.listFiles());
+		LOGGER.info(String.format("Found %d files.", files.size()));
+		
+		FilelistConverter converter = new FilelistConverter();
+		List<PhotoContainer> photos = converter.convertToPhotoContainerList(files);
+		LOGGER.info(String.format("Found %d photos.", photos.size()));
+		return photos;
 	}
 }
