@@ -15,7 +15,7 @@ public class PhotoManager {
 			Cli cli = new Cli();
 			cli.parseArgs(args);
 			
-			if (cli.getAction() == Cli.Action.NONE) {
+			if (cli.hasOption("h") || cli.getAction() == Cli.Action.NONE) {
 				cli.printHelp();
 				return;
 			}
