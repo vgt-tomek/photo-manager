@@ -8,14 +8,13 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import pl.vgtworld.photomanager.PhotoManager;
 import pl.vgtworld.photomanager.filters.DateFilter;
 import pl.vgtworld.photomanager.model.PhotoContainer;
 import pl.vgtworld.photomanager.tools.FilelistConverter;
 
 public class Launcher {
 	
-	private static final Logger LOGGER = Logger.getLogger(PhotoManager.class);
+	private static final Logger LOGGER = Logger.getLogger(Launcher.class);
 	
 	public void rename(String path, int minimumDigits) {
 		File directory = new File(path);
