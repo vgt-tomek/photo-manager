@@ -1,6 +1,7 @@
 package pl.vgtworld.photomanager;
 
 import org.apache.commons.cli.ParseException;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import pl.vgtworld.photomanager.apps.Launcher;
@@ -13,6 +14,8 @@ public class PhotoManager {
 	private static final String ARGUMENT_VALUE_PATH = "p";
 
 	private static final String ARGUMENT_VALUE_HELP = "h";
+	
+	private static final String ARGUMENT_VALUE_VERBOSE = "v";
 
 	private static final String INVALID_NUMBER_FOR_D_PARAMETER_MESSAGE = "Invalid number provided for -d parameter.";
 
@@ -28,6 +31,10 @@ public class PhotoManager {
 		try {
 			Cli cli = new Cli();
 			cli.parseArgs(args);
+			
+			if (cli.hasOption(ARGUMENT_VALUE_VERBOSE)) {
+				Logger.getRootLogger().setLevel(Level.INFO);
+			}
 			
 			if (cli.hasOption(ARGUMENT_VALUE_HELP) || cli.getAction() == Cli.Action.NONE) {
 				cli.printHelp();
