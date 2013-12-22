@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import pl.vgtworld.photomanager.apps.Launcher;
 import pl.vgtworld.photomanager.cli.Cli;
 
-public class PhotoManager {
+public final class PhotoManager {
 	
 	private static final String ARGUMENT_VALUE_DIGITS = "d";
 
@@ -26,6 +26,8 @@ public class PhotoManager {
 	private static final String SEE_HELP_MESSAGE = " Use -h for more information.";
 	
 	private static final Logger LOGGER = Logger.getLogger(PhotoManager.class);
+	
+	private PhotoManager() {}
 	
 	public static void main(String[] args) {
 		try {
