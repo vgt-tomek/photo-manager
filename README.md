@@ -1,7 +1,7 @@
 photo-manager
 =============
 
-Photo manager is console application I've created to speedup process of preparing new photos to fit my archivization scheme.
+Photo manager is console application I've created to speed up process of preparing new photos to fit my archivization scheme.
 
 When I download new photo session from my camera, files look like this:
 
@@ -15,7 +15,7 @@ First is renaming files to my naming template, which is: {year}-{month}-{day} - 
 
 ![Photo manager - after](http://blog.vgtworld.pl/wp-content/uploads/2013/12/photo-manager-files-after.jpg)
 
-Later I choose, which files to keep and which ones I don't need. When I delete them, only jpeg files are remove, but raw are still there. At this point second autometaed step is to remove raw files with missing coresponding jpeg.
+Later I choose, which files to keep and which ones I don't need. When I delete them, only jpeg files are removed, but raw files are still there. At this point second step is to remove all raw files with missing coresponding jpeg files.
 
 Before:
 
